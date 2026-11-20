@@ -1,0 +1,35 @@
+name: Build Windows
+
+on:
+  push:
+    branches: [main]
+  workflow_dispatch:
+
+jobs:
+  build:
+    runs-on: windows-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Download Godot
+        run: |
+          Invoke-WebRequest -Uri "https://github.com/godotengine/godot/releases/download/4.7-stable/Godot_v4.7-stable_win64.exe.zip" -OutFile godot.zip
+          Expand-Archive godot.zip -DestinationPath godot
+
+      - name: Download export templates
+        run: |
+          Invoke-WebRequest -Uri "https://github.com/godotengine/godot/releases/download/4.7-stable/Godot_v4.7-stable_export_templates.tpz" -OutFile templates.tpz
+          Move-Item templates.tpz templates.zip
+          Expand-Archive templates.zip -DestinationPath templates
+          New-Item -ItemType Directory -Force -Path "$env:APPDATA\Godot\export_templates\4.7.stable" | Out-Null
+          Copy-Item -Path templates\* -Destination "$env:APPDATA\Godot\export_templates\4.7.stable" -Recurse -Force
+
+      - name: Export Windows build
+        run: |
+          New-Item -ItemType Directory -Force -Path build/windows | Out-Null
+          & godot\Godot_v4.7-stable_win64.exe --headless --path . --export-release "Windows Desktop" build/windows/PandaGuardian.exe
+
+      - uses: actions/upload-artifact@v4
+        with:
+          name: panda-guard-protocol-windows
+          path: build/windows
