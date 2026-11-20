@@ -9,17 +9,17 @@ var is_active := false
 @onready var prompt_label: Label = $PromptLabel
 
 func _physics_process(_delta: float) -> void:
-	var player_inside := _player_inside()
-	prompt_label.visible = player_inside
+	var box_inside := _box_inside()
+	prompt_label.visible = box_inside
 
-	if player_inside and Input.is_action_just_pressed("interact"):
-		is_active = not is_active
+	if box_inside != is_active:
+		is_active = box_inside
 		_update_visuals()
 		activated.emit(is_active)
 
-func _player_inside() -> bool:
+func _box_inside() -> bool:
 	for body in get_overlapping_bodies():
-		if body.is_in_group("player"):
+		if body.is_in_group("box"):
 			return true
 	return false
 

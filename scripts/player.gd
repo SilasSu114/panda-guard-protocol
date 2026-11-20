@@ -28,3 +28,8 @@ func _physics_process(delta: float) -> void:
 		velocity.y += GRAVITY * delta
 
 	move_and_slide()
+
+	for i in get_slide_collision_count():
+		var collider = get_slide_collision(i).get_collider()
+		if collider and collider.has_method("push"):
+			collider.push(direction)

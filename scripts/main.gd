@@ -8,6 +8,7 @@ const ROTATION_STEP := PI / 2.0
 
 func _ready() -> void:
 	$LevelRoot/Switch.activated.connect($LevelRoot/Exit.set_open)
+	$LevelRoot/Switch.activated.connect(_on_switch_activated)
 	$LevelRoot/Exit.completed.connect(_on_level_completed)
 	$LevelRoot/Exit.blocked.connect(_on_exit_blocked)
 
@@ -29,6 +30,9 @@ func _rotate_level() -> void:
 func _on_level_completed() -> void:
 	player.frozen = true
 	message_label.text = "通关！"
+
+func _on_switch_activated(_active: bool) -> void:
+	message_label.text = "把箱子推到开关上"
 
 func _on_exit_blocked() -> void:
 	message_label.text = "出口还没开"
