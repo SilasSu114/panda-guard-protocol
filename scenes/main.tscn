@@ -34,7 +34,7 @@ color = Color(0.18, 0.22, 0.28, 1)
 polygon = PackedVector2Array(-480, -40, 480, -40, 480, 40, -480, 40)
 
 [node name="PlatformA" type="StaticBody2D" parent="LevelRoot"]
-position = Vector2(-240, 140)
+position = Vector2(-240, 180)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="LevelRoot/PlatformA"]
 shape = SubResource("RectangleShape2D_platform_a")
@@ -44,7 +44,7 @@ color = Color(0.24, 0.3, 0.36, 1)
 polygon = PackedVector2Array(-120, -20, 120, -20, 120, 20, -120, 20)
 
 [node name="PlatformB" type="StaticBody2D" parent="LevelRoot"]
-position = Vector2(200, 40)
+position = Vector2(200, 120)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="LevelRoot/PlatformB"]
 shape = SubResource("RectangleShape2D_platform_b")
@@ -54,7 +54,7 @@ color = Color(0.24, 0.3, 0.36, 1)
 polygon = PackedVector2Array(-120, -20, 120, -20, 120, 20, -120, 20)
 
 [node name="PlatformC" type="StaticBody2D" parent="LevelRoot"]
-position = Vector2(440, 40)
+position = Vector2(440, 120)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="LevelRoot/PlatformC"]
 shape = SubResource("RectangleShape2D_platform_c")
@@ -67,10 +67,10 @@ polygon = PackedVector2Array(-80, -20, 80, -20, 80, 20, -80, 20)
 position = Vector2(-420, 180)
 
 [node name="Switch" parent="LevelRoot" instance=ExtResource("3")]
-position = Vector2(220, 0)
+position = Vector2(220, 80)
 
 [node name="Exit" parent="LevelRoot" instance=ExtResource("4")]
-position = Vector2(440, 0)
+position = Vector2(440, 80)
 
 [node name="UI" type="CanvasLayer" parent="."]
 
