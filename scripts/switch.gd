@@ -6,12 +6,9 @@ var is_active := false
 
 @onready var inactive_visual: Polygon2D = $InactiveVisual
 @onready var active_visual: Polygon2D = $ActiveVisual
-@onready var prompt_label: Label = $PromptLabel
 
 func _physics_process(_delta: float) -> void:
 	var box_inside := _box_inside()
-	prompt_label.visible = box_inside
-
 	if box_inside != is_active:
 		is_active = box_inside
 		_update_visuals()

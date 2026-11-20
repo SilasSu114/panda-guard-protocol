@@ -24,8 +24,13 @@ func _rotate_level() -> void:
 
 	player.frozen = true
 	level_root.rotation += ROTATION_STEP
-	player.rotation = -level_root.rotation
+	_counter_rotate_children()
 	player.frozen = false
+
+func _counter_rotate_children() -> void:
+	for child in [$LevelRoot/Player, $LevelRoot/Box, $LevelRoot/Switch, $LevelRoot/Exit]:
+		if child is Node2D:
+			child.rotation = -level_root.rotation
 
 func _on_level_completed() -> void:
 	player.frozen = true
