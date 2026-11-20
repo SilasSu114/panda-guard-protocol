@@ -1,0 +1,11 @@
+# Godot 4 generated/import cache
+.godot/
+*.tmp
+
+# OS files
+.DS_Store
+Thumbs.db
+
+# Local editor settings that should not be shared
+.idea/
+*.swp
